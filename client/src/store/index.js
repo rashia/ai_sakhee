@@ -2,12 +2,57 @@ import { create } from 'zustand'
 
 export const useAuthStore = create((set) => ({
   user: null,
+  userProfile: null,
   isAuthenticated: false,
   isLoading: false,
 
   setUser: (user) => set({ user, isAuthenticated: !!user }),
-  logout: () => set({ user: null, isAuthenticated: false }),
-  setLoading: (loading) => set({ isLoading: loading })
+  
+  setUserProfile: (profile) => set({ userProfile: profile }),
+  
+  logout: () => set({ user: null, userProfile: null, isAuthenticated: false }),
+  
+  setLoading: (loading) => set({ isLoading: loading }),
+
+  // Complete onboarding function
+  completeOnboarding: async (onboardingData) => {
+    try {
+      set({ isLoading: true });
+
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+      
+      const response = await fetch(`${apiUrl}/user/onboarding`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include', // Include cookies if using sessions
+        body: JSON.stringify(onboardingData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+
+      // Update the user profile with onboarded status
+      set((state) => ({
+        userProfile: {
+          ...state.userProfile,
+          ...onboardingData,
+          onboarded: true,
+        },
+        isLoading: false,
+      }));
+
+      return { success: true, data: result };
+    } catch (error) {
+      console.error('Complete onboarding error:', error);
+      set({ isLoading: false });
+      return { success: false, error: error.message };
+    }
+  },
 }))
 
 export const useUserProfileStore = create((set) => ({

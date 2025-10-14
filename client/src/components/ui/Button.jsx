@@ -1,3 +1,8 @@
+// ============================================================================
+// FILE 5: client/src/components/ui/Button.jsx
+// Reusable button component with gradient support
+// ============================================================================
+
 import React from 'react';
 
 export const Button = ({ 
@@ -7,7 +12,8 @@ export const Button = ({
   onClick, 
   disabled = false,
   className = '',
-  type = 'button'
+  type = 'button',
+  fullWidth = false
 }) => {
   const baseStyles = 'font-medium rounded-full transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed';
   
@@ -17,6 +23,7 @@ export const Button = ({
     outline: 'border-2 border-primary-500 text-primary-600 hover:bg-primary-50',
     danger: 'bg-red-500 text-white hover:bg-red-600',
     ghost: 'text-primary-600 hover:bg-primary-50',
+    cyan: 'bg-gradient-to-r from-cyan-500 to-cyan-600 text-white hover:from-cyan-600 hover:to-cyan-700 shadow-button',
   };
   
   const sizes = {
@@ -24,13 +31,15 @@ export const Button = ({
     md: 'px-6 py-3 text-base',
     lg: 'px-8 py-4 text-lg',
   };
+
+  const widthClass = fullWidth ? 'w-full' : '';
   
   return (
     <button
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
+      className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${widthClass} ${className}`}
     >
       {children}
     </button>

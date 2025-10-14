@@ -7,27 +7,26 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Primary brand colors
         primary: {
+          25: '#faf5ff',
           50: '#fdf4ff',
           100: '#fae8ff',
           200: '#f5d0fe',
           300: '#f0abfc',
           400: '#e879f9',
-          500: '#d946ef',  // Main purple
+          500: '#d946ef',
           600: '#c026d3',
           700: '#a21caf',
           800: '#86198f',
           900: '#701a75',
         },
-        // Accent colors
         pink: {
           50: '#fdf2f8',
           100: '#fce7f3',
           200: '#fbcfe8',
           300: '#f9a8d4',
           400: '#f472b6',
-          500: '#ec4899',  // Main pink
+          500: '#ec4899',
           600: '#db2777',
           700: '#be185d',
         },
@@ -35,27 +34,27 @@ export default {
           50: '#fff7ed',
           100: '#ffedd5',
           200: '#fed7aa',
-          300: '#fdba74',  // Main peach
+          300: '#fdba74',
           400: '#fb923c',
         },
-        teal: {
-          50: '#f0fdfa',
-          100: '#ccfbf1',
-          200: '#99f6e4',
-          300: '#5eead4',
-          400: '#2dd4bf',
-          500: '#14b8a6',  // Main teal
-          600: '#0d9488',
-        }
+        cyan: {
+          50: '#ecfeff',
+          100: '#cffafe',
+          200: '#a5f3fc',
+          300: '#67e8f9',
+          400: '#22d3ee',
+          500: '#06b6d4',
+          600: '#0891b2',
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         heading: ['Poppins', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
-        'xl': '1rem',     // 16px
-        '2xl': '1.5rem',  // 24px
-        '3xl': '2rem',    // 32px
+        'xl': '1rem',
+        '2xl': '1.5rem',
+        '3xl': '2rem',
       },
       boxShadow: {
         'card': '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
